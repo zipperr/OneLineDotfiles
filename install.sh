@@ -42,7 +42,7 @@ create_symbolic_links(){
         # rm -f $HOME/.gitconfig
         # rm -f $HOME/.gitignore_global
         rm -f $HOME/.minttyrc
-        cmd mklink %HOMEPATH%"\.minttyrc" %HOMEPATH%"\dotfiles\.minttyrc"
+        cmd "mklink %HOMEPATH%"\.minttyrc" %HOMEPATH%"\dotfiles\.minttyrc""
         # ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
         # ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
         # ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
