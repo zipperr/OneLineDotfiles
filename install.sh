@@ -1,8 +1,9 @@
 #!/bin/bash
 
+echo ${HOME}
 DOT_DIRECTORY="${HOME}/dotfiles"
-DOT_TARBALL="https://github.com/zipperr/dotfiles"
-REMOTE_URL="git@github.com:himinato/dotfiles.git"
+DOT_TARBALL="https://github.com/zipperr/OneLineDotfiles"
+REMOTE_URL="git@github.com:zipperr/OneLineDotfiles.git"
 # ディレクトリがなければダウンロード（と解凍）する
 if [ ! -d ${DOT_DIRECTORY} ]; then
   echo "Downloading dotfiles..."
