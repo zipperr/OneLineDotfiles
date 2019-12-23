@@ -32,24 +32,25 @@ setup(){
 
 create_symbolic_links(){
     if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-        export MSYS=winsymlinks:nati
+        # export MSYS=winsymlinks:nati
         # setx MSYS winsymlinks:nativestrict
-        rm -f $HOME/.vimrc
-        rm -f $HOME/.bashrc
-        rm -f $HOME/.bash_completion
-        rm -f $HOME/.zshrc
-        rm -f $HOME/.git-prompt.sh
-        rm -f $HOME/.gitconfig
-        rm -f $HOME/.gitignore_global
+        # rm -f $HOME/.vimrc
+        # rm -f $HOME/.bashrc
+        # rm -f $HOME/.bash_completion
+        # rm -f $HOME/.zshrc
+        # rm -f $HOME/.git-prompt.sh
+        # rm -f $HOME/.gitconfig
+        # rm -f $HOME/.gitignore_global
         rm -f $HOME/.minttyrc
-        ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
-        ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
-        ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
-        ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
-        ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
-        ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
-        ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
-        ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
+        cmd mklink %HOMEPATH%"\.minttyrc" %HOMEPATH%"\dotfiles\.minttyrc"
+        # ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+        # ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
+        # ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
+        # ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
+        # ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
+        # ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
+        # ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
+        # ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
     else
         sudo rm $HOME/.vimrc
         sudo rm $HOME/.bashrc
