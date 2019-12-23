@@ -11,15 +11,15 @@ download_dotfiles() {
     fi
 
     echo "downloading"
-    # if type git > /dev/null 2>&1; then
-    #     echo "using git"
-    #     git clone $REPOSITORY_URL
-    # else
+    if type git > /dev/null 2>&1; then
+        echo "using git"
+        git clone $REPOSITORY_UR[L
+        ]else
         echo "using curl"
         curl -sL $REPOSITORY_URL/archive/master.tar.gz | tar xz
         mv $REPOSITORY_NAME"-master" $DOTFILES_PATH
         rm -f $HOME/$REPOSITORY_NAME.tar.gz
-    # fi
+    fi
     echo "success"
     cd $DOTFILES_PATH
 }
@@ -51,6 +51,17 @@ create_symbolic_links(){
     ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
     ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
     ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
+
+    if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+        mklink %HOMEPATH%"\.vimrc" %HOMEPATH%"\dotfiles\.vimrc"
+        mklink %HOMEPATH%"\.bashrc" %HOMEPATH%"\dotfiles\.bashrc"
+        mklink %HOMEPATH%"\.bash_completion" %HOMEPATH%"\dotfiles\.bash_completion"
+        mklink %HOMEPATH%"\.zshrc" %HOMEPATH%"\dotfiles\.zshrc"
+        mklink %HOMEPATH%"\.gitconfig" %HOMEPATH%"\dotfiles\.gitconfig"
+        mklink %HOMEPATH%"\.gitignore_global" %HOMEPATH%"\dotfiles\.gitignore_global"
+        mklink %HOMEPATH%"\.git-prompt.sh" %HOMEPATH%"\dotfiles\.git-prompt.sh"
+        mklink %HOMEPATH%"\.minttyrc" %HOMEPATH%"\dotfiles\.minttyrc"
+    fi
 }
 
 download_dotfiles
