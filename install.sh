@@ -25,9 +25,9 @@ setup(){
     echo 'Setup for each OS'
     if [ "$(uname)" == "Darwin" ]; then
         echo 'mac'
-    elif [ "$(expr substr $(uname -s) 1 5 > /dev/null 2>&1)" == "MINGW" ]; then
+    elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
         echo 'windows'
-    elif [ "$(expr substr $(uname -s) 1 5 > /dev/null 2>&1)" == "Linux" ]; then
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo 'linux'
     fi
 }
