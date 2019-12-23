@@ -46,13 +46,146 @@ setup(){
     echo 'Setup for each OS'
     if [ "$(uname)" == "Darwin" ]; then
         echo 'mac'
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brew tap Homebrew/bundle
+        brew bundle
+        chsh -s /bin/zsh
+        sudo nvram SystemAudioVolume=%00
+        defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+        defaults write com.apple.dock autohide-delay -float 0
+        defaults write com.apple.dock autohide-time-modifier -float 0
+        defaults write com.apple.dock autohide -bool true
+        defaults write com.apple.dock mineffect -string "scale"
+        defaults write com.apple.dock springboard-show-duration -int 0
+        defaults write com.apple.dock springboard-hide-duration -int 0
+        killall Dock
+        sudo chflags nohidden ~/Library
+        sudo chflags nohidden /Volumes
+        defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+        defaults write -g com.apple.trackpad.scaling 3
+        defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+        defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+        defaults write com.apple.finder AppleShowAllFiles true
+        defaults write com.apple.finder QuitMenuItem -bool true
+        defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+        defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+        defaults write com.apple.LaunchServices LSQuarantine -bool false
+        defaults write com.apple.CrashReporter DialogType none
+        defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+        defaults write com.apple.finder WarnOnEmptyTrash -bool false
+        defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+        defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+        defaults write com.apple.Safari UniversalSearchEnabled -bool false
+        defaults write -g InitialKeyRepeat -int 12
+        defaults write -g KeyRepeat -int 1
+        defaults write com.apple.screensaver askForPassword -bool false
+        TERM_PROFILE='zip';
+        TERM_PATH='./';
+        CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
+        if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
+            open "$TERM_PATH$TERM_PROFILE.terminal"
+            defaults write com.apple.Terminal "Default Window Settings" -string "$TERM_PROFILE"
+            defaults write com.apple.Terminal "Startup Window Settings" -string "$TERM_PROFILE"
+        fi
+        defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
     elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
         echo 'windows'
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo 'linux'
+        sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
+        sudo apt-get -y install zsh vim git make python3 python w3m
+        sudo apt-get -y install gcc cpp g++ perl ruby node.js lua
+        chsh -s /usr/bin/zsh
+        localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+    fi
+}
+
+install_python(){
+    if [ "$(uname)" == "Darwin" ]; then
+        if [ `which pyenv` ]; then
+            while true;do
+                echo "Start python3.7.0 install"
+                echo "Type 'y' or 'n'"
+                read answer
+                case $answer in
+                    y)
+                        pyenv install -v 3.7.0
+                        pyenv global 3.7.0
+                        break
+                        ;;
+                    n)
+                        break
+                        ;;
+                    *)
+                        echo -e "cannot understand $answer.\n"
+                        ;;
+                esac
+            done
+        fi
+        if [ `which pip` ]; then
+            pip install --upgrade pip
+            pip install numpy
+            pip install Flask
+            pip install vim-vint
+            pip install flask-socketIO
+        fi
+    elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+        while true;do
+            echo "Start python3 install"
+            echo "Type 'y' or 'n'"
+            read answer
+            case $answer in
+                y)
+                    echo "Go https://www.python.org/"
+                    break
+                    ;;
+                n)
+                    break
+                    ;;
+                *)
+                    echo -e "cannot understand $answer.\n"
+                    ;;
+            esac
+        done
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        if [ `which git` ]; then
+            while true;do
+                echo "Start python3.7.0 install"
+                echo "Type 'y' or 'n'"
+                read answer
+                case $answer in
+                    y)
+                        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+                        sudo apt-get -y install git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
+                        pyenv install -v 3.7.0
+                        pyenv global 3.7.0
+                        break
+                        ;;
+                    n)
+                        break
+                        ;;
+                    *)
+                        echo -e "cannot understand $answer.\n"
+                        ;;
+                esac
+            done
+        fi
+        if [ `which pip` ]; then
+            pip install --upgrade pip
+            pip install numpy
+            pip install Flask
+            pip install vim-vint
+            pip install flask-socketIO
+            pip install Flask-MySQL
+            pip install picamera
+            pip install --upgrade setuptools
+            pip install flask-bootstrap
+        fi
     fi
 }
 
 download_dotfiles
 create_symbolic_links
 setup
+install_python
