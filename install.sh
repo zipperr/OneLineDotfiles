@@ -21,17 +21,6 @@ download_dotfiles() {
     cd $DOTFILES_PATH
 }
 
-setup(){
-    echo 'Setup for each OS'
-    if [ "$(uname)" == "Darwin" ]; then
-        echo 'mac'
-    elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-        echo 'windows'
-    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        echo 'linux'
-    fi
-}
-
 create_symbolic_links(){
     echo 'Create SymbolicLinks'
     export MSYS=winsymlinks:nati
@@ -50,9 +39,20 @@ create_symbolic_links(){
     ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
     ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
     ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
-    ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
+    ln -s $HOME/dotfiles/.minttyrc $HOME/.minttyrc
+}
+
+setup(){
+    echo 'Setup for each OS'
+    if [ "$(uname)" == "Darwin" ]; then
+        echo 'mac'
+    elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+        echo 'windows'
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        echo 'linux'
+    fi
 }
 
 download_dotfiles
-setup
 create_symbolic_links
+setup
