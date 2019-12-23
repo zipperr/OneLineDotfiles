@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DOTFILES_PATH="$HOME/dotfile20191223"
 REPOSITORY_NAME="OneLineDotfiles"
 REPOSITORY_URL="https://github.com/zipperr/"$REPOSITORY_NAME
+DOTFILES_PATH="$HOME/$REPOSITORY_NAME"
 
 download_dotfiles() {
     cd $HOME
