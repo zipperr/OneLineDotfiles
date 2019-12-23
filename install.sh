@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DOTFILES_PATH="$HOME/dotfiles"
 if [ -d $DOTFILES_PATH ]; then
     echo "あああ"
 else
