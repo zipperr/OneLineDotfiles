@@ -53,14 +53,30 @@ create_symbolic_links(){
     ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
 
     if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-        mklink %HOMEPATH%"\.vimrc" %HOMEPATH%"\dotfiles\.vimrc"
-        mklink %HOMEPATH%"\.bashrc" %HOMEPATH%"\dotfiles\.bashrc"
-        mklink %HOMEPATH%"\.bash_completion" %HOMEPATH%"\dotfiles\.bash_completion"
-        mklink %HOMEPATH%"\.zshrc" %HOMEPATH%"\dotfiles\.zshrc"
-        mklink %HOMEPATH%"\.gitconfig" %HOMEPATH%"\dotfiles\.gitconfig"
-        mklink %HOMEPATH%"\.gitignore_global" %HOMEPATH%"\dotfiles\.gitignore_global"
-        mklink %HOMEPATH%"\.git-prompt.sh" %HOMEPATH%"\dotfiles\.git-prompt.sh"
-        mklink %HOMEPATH%"\.minttyrc" %HOMEPATH%"\dotfiles\.minttyrc"
+        rm $HOME/.vimrc
+        rm $HOME/.bashrc
+        rm $HOME/.bash_completion
+        rm $HOME/.zshrc
+        rm $HOME/.git-prompt.sh
+        rm $HOME/.gitconfig
+        rm $HOME/.gitignore_global
+        rm $HOME/.minttyrc
+        ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+        ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
+        ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
+        ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
+        ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
+        ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
+        ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
+        ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
+        # mklink %HOMEPATH%"\.vimrc" %HOMEPATH%"\dotfiles\.vimrc"
+        # mklink %HOMEPATH%"\.bashrc" %HOMEPATH%"\dotfiles\.bashrc"
+        # mklink %HOMEPATH%"\.bash_completion" %HOMEPATH%"\dotfiles\.bash_completion"
+        # mklink %HOMEPATH%"\.zshrc" %HOMEPATH%"\dotfiles\.zshrc"
+        # mklink %HOMEPATH%"\.gitconfig" %HOMEPATH%"\dotfiles\.gitconfig"
+        # mklink %HOMEPATH%"\.gitignore_global" %HOMEPATH%"\dotfiles\.gitignore_global"
+        # mklink %HOMEPATH%"\.git-prompt.sh" %HOMEPATH%"\dotfiles\.git-prompt.sh"
+        # mklink %HOMEPATH%"\.minttyrc" %HOMEPATH%"\dotfiles\.minttyrc"
     fi
 }
 
