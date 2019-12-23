@@ -31,7 +31,7 @@ setup(){
 }
 
 create_symbolic_links(){
-    if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+    if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" > /dev/null 2>&1 ]; then
         export MSYS=winsymlinks:nati
         rm -f $HOME/.vimrc
         rm -f $HOME/.bashrc
