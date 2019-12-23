@@ -7,18 +7,18 @@ download_dotfiles() {
 
     cd $HOME
     if [ -d $DOTFILES_PATH ]; then
-        echo $DOTFILES_PATH"already exists"
+        rm -rf $DOTFILES_PATH
     fi
 
     echo "downloading"
     if type git > /dev/null 2>&1; then
-
         echo "using git"
         git clone $REPOSITORY_URL
     else
         echo "using curl"
         curl -sL $REPOSITORY_URL/archive/master.tar.gz | tar xz
         mv $REPOSITORY_NAME"-master" $DOTFILES_PATH
+        rm -f $HOME/$REPOSITORY_NAME.tar.gz
     fi
     echo "success"
     cd $DOTFILES_PATH
