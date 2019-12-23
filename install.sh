@@ -185,7 +185,9 @@ install_python(){
     fi
 }
 
+echo "Start Setup"
 download_dotfiles
 create_symbolic_links
 setup
 install_python
+echo "Finish Setup"
