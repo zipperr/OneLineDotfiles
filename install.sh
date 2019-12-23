@@ -8,7 +8,7 @@ else
         git clone https://github.com/zipperr/OneLineDotfiles
     else
         curl -sL https://github.com/zipperr/OneLineDotfiles/archive/master.tar.gz | tar xz
-        mv dotfiles-master dotfiles
+        mv dotfiles-master dotfilesTest
     fi
     echo "ajskldf"
 fi
