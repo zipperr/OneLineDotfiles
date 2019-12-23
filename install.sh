@@ -10,17 +10,13 @@ download_dotfiles() {
         rm -rf $DOTFILES_PATH
     fi
 
-    echo "downloading"
     if type git > /dev/null 2>&1; then
-        echo "using git"
         git clone $REPOSITORY_URL
     else
-        echo "using curl"
         curl -sL $REPOSITORY_URL/archive/master.tar.gz | tar xz
         mv $REPOSITORY_NAME"-master" $DOTFILES_PATH
         rm -f $HOME/$REPOSITORY_NAME.tar.gz
     fi
-    echo "success"
     cd $DOTFILES_PATH
 }
 
@@ -36,7 +32,8 @@ setup(){
 
 create_symbolic_links(){
     if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-        setx MSYS winsymlinks:nativestrict
+        export MSYS=winsymlinks:nati
+        # setx MSYS winsymlinks:nativestrict
         rm -f $HOME/.vimrc
         rm -f $HOME/.bashrc
         rm -f $HOME/.bash_completion
