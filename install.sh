@@ -31,7 +31,6 @@ setup(){
 }
 
 create_symbolic_links(){
-    if [ "$(expr substr $(uname -s) 1 5 > /dev/null 2>&1)" == "MINGW" ]; then
         export MSYS=winsymlinks:nati
         rm -f $HOME/.vimrc
         rm -f $HOME/.bashrc
@@ -49,24 +48,6 @@ create_symbolic_links(){
         ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
         ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
         ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
-    else
-        rm -f $HOME/.vimrc
-        rm -f $HOME/.bashrc
-        rm -f $HOME/.bash_completion
-        rm -f $HOME/.zshrc
-        rm -f $HOME/.git-prompt.sh
-        rm -f $HOME/.gitconfig
-        rm -f $HOME/.gitignore_global
-        rm -f $HOME/.minttyrc
-        ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
-        ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
-        ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
-        ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
-        ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
-        ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
-        ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
-        ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
-    fi
 }
 
 download_dotfiles
