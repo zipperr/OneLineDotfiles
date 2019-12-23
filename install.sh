@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ${HOME}
-DOT_DIRECTORY="${HOME}/dotfiles"
+DOT_DIRECTORY="${HOME}/dotfilesTest"
 DOT_TARBALL="https://github.com/zipperr/OneLineDotfiles"
 REMOTE_URL="git@github.com:zipperr/OneLineDotfiles.git"
 # ディレクトリがなければダウンロード（と解凍）する
