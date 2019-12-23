@@ -11,15 +11,15 @@ download_dotfiles() {
     fi
 
     echo "downloading"
-    if type git > /dev/null 2>&1; then
-        echo "using git"
-        git clone $REPOSITORY_URL
-    else
+    # if type git > /dev/null 2>&1; then
+    #     echo "using git"
+    #     git clone $REPOSITORY_URL
+    # else
         echo "using curl"
         curl -sL $REPOSITORY_URL/archive/master.tar.gz | tar xz
         mv $REPOSITORY_NAME"-master" $DOTFILES_PATH
         rm -f $HOME/$REPOSITORY_NAME.tar.gz
-    fi
+    # fi
     echo "success"
     cd $DOTFILES_PATH
 }
